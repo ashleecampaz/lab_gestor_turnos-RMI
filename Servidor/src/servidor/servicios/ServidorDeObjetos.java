@@ -9,8 +9,8 @@ package servidor.servicios;
 import servidor.utilidades.UtilidadesRegistroS;
 import servidor.utilidades.UtilidadesConsola;
 import java.rmi.RemoteException;
-import servidor.Repositorios.UsuariosRepository;
-import servidor.controladores.ControladorGestorUsuariosIml;
+import servidor.Repositorios.GenerarTurnoRepositoryImpl;
+import servidor.controladores.ControladorGeneradorTurnoIml;
 
 public class ServidorDeObjetos
 {
@@ -25,13 +25,13 @@ public class ServidorDeObjetos
         System.out.println("Cual es el número de puerto por el cual escucha el rmiRegistry ");
         numPuertoRMIRegistry = UtilidadesConsola.leerEntero(); 
      
-        UsuariosRepository objRepository = new UsuariosRepository();
-        ControladorGestorUsuariosIml objRemoto = new ControladorGestorUsuariosIml(objRepository);//se leasigna el puerto de escucha del objeto remoto
+        GenerarTurnoRepositoryImpl objRepository = new GenerarTurnoRepositoryImpl();
+        ControladorGeneradorTurnoIml objRemoto = new ControladorGeneradorTurnoIml(objRepository);//se leasigna el puerto de escucha del objeto remoto
         
         try
         {
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "controladorGestionUsuarios");            
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "controladorGeneradorTurno");            
            
         } catch (Exception e)
         {
